@@ -18,15 +18,12 @@ export const ModalCar = ({ isVisible, carProducts, setShowModalCar, resetCart, r
     const { width } = useWindowDimensions();
 
     const handleBuy = () => {
-        Alert.alert("¡GRACIAS POR TU COMPRA, VUELVE PRONTO!", "Tu pedido ha sido procesado con éxito.", [
-            { 
-                text: "OK", 
-                onPress: () => {
-                    resetCart(); 
-                    setShowModalCar(); 
-                }
-            }
-        ]);
+        setShowModalCar(); // Cierra el modal primero
+
+        setTimeout(() => {
+            resetCart(); // Luego vacía el carrito después de cerrar el modal
+            Alert.alert("¡GRACIAS POR TU COMPRA, VUELVE PRONTO!", "Tu pedido ha sido procesado con éxito.");
+        }, 300); 
     };
     
     return (
@@ -34,7 +31,6 @@ export const ModalCar = ({ isVisible, carProducts, setShowModalCar, resetCart, r
             <View style={styles.modalContainer}>
                 <View style={{ ...styles.modalProduct, width: width * 0.85 }}>
                     
-                    {/* Encabezado del modal */}
                     <View style={styles.modalHeader}>
                         <Text style={styles.modalTitle}>Carrito de Compras</Text>
                         <TouchableOpacity onPress={setShowModalCar}>
@@ -42,41 +38,24 @@ export const ModalCar = ({ isVisible, carProducts, setShowModalCar, resetCart, r
                         </TouchableOpacity>
                     </View>
 
-                    {/* Si el carrito está vacío, muestra mensaje */}
                     {carProducts.length === 0 ? (
                         <Text style={styles.emptyCartMessage}>No hay productos en el carrito</Text>
                     ) : (
                         <>
-                            {/* Lista de productos en el carrito */}
                             <FlatList
                                 data={carProducts}
                                 renderItem={({ item }) => (
                                     <View style={styles.cartItemContainer}>
-                                        
                                         <View style={styles.cartItemInfo}>
                                             <Text style={styles.productName}>{item.name}</Text>
                                             <Text style={styles.productPrice}>${item.price.toFixed(2)}</Text>
                                             <Text style={styles.productTotal}>Total: ${item.total.toFixed(2)}</Text>
                                         </View>
-
-                                        <View style={styles.cartItemActions}>
-                                            <TouchableOpacity onPress={() => decreaseQuantity(item.id)} style={styles.decreaseButton}>
-                                                <Text style={styles.decreaseText}>-</Text>
-                                            </TouchableOpacity>
-
-                                            <Text style={styles.quantityText}>{item.quantity}</Text>
-
-                                            <TouchableOpacity onPress={() => removeProduct(item.id)} style={styles.deleteButton}>
-                                                <Icon name="delete" size={22} color="white" />
-                                            </TouchableOpacity>
-                                        </View>
-
                                     </View>
                                 )}
                                 keyExtractor={item => item.id.toString()}
                             />
 
-                            {/* Botón para finalizar compra */}
                             <TouchableOpacity style={styles.buttonBuy} onPress={handleBuy}>
                                 <Text style={styles.buttonBuyText}>Finalizar Compra</Text>
                             </TouchableOpacity>

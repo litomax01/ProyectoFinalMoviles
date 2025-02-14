@@ -31,11 +31,6 @@ export const HomeScreen = () => {
         { id: 3, name: 'Mochila escolar', price: 25.00, stock: 3, pathImage: 'https://your-image-link.com/mochila.jpg' },
         { id: 4, name: 'Cuaderno universitario', price: 4.99, stock: 10, pathImage: 'https://your-image-link.com/cuaderno.jpg' },
         { id: 5, name: 'Lápices', price: 3.50, stock: 12, pathImage: 'https://your-image-link.com/lapices.jpg' },
-        { id: 6, name: 'Agenda', price: 22.00, stock: 5, pathImage: 'https://your-image-link.com/agenda.jpg' },
-        { id: 7, name: 'Tijeras', price: 4.50, stock: 10, pathImage: 'https://your-image-link.com/tijeras.jpg' },
-        { id: 8, name: 'Corrector líquido', price: 2.75, stock: 15, pathImage: 'https://your-image-link.com/corrector.jpg' },
-        { id: 9, name: 'Cartuchera', price: 8.99, stock: 7, pathImage: 'https://your-image-link.com/cartuchera.jpg' },
-        { id: 10, name: 'Marcadores', price: 9.50, stock: 8, pathImage: 'https://your-image-link.com/rotuladores.jpg' },
     ];
     
     const [productsState, setProductsState] = useState<Product[]>(products);
@@ -83,19 +78,11 @@ export const HomeScreen = () => {
     };
 
     const resetCart = (): void => {
-        Alert.alert(
-            "¡GRACIAS POR TU COMPRA, VUELVE PRONTO!",
-            "Tu pedido ha sido procesado con éxito.",
-            [
-                { 
-                    text: "OK", 
-                    onPress: () => {
-                        setCarProducts([]);
-                        setShowModalCar(false); 
-                    }
-                }
-            ]
-        );
+        setShowModalCar(false); // Cierra el modal primero
+
+        setTimeout(() => {
+            setCarProducts([]); // Luego vacía el carrito con un pequeño delay
+        }, 200); 
     };
 
     return (
