@@ -13,7 +13,7 @@ export interface Product {
     name: string;
     price: number;
     stock: number;
-    pathImage: string;
+    pathImage: number | { uri: string };  
 }
 
 export interface CarProduct {
@@ -26,11 +26,20 @@ export interface CarProduct {
 
 export const HomeScreen = () => {
     const products: Product[] = [
-        { id: 1, name: 'Cien años de soledad', price: 15.00, stock: 5, pathImage: 'https://your-image-link.com/cien_anos.jpg' },
-        { id: 2, name: 'El Principito', price: 10.50, stock: 8, pathImage: 'https://your-image-link.com/el_principito.jpg' },
-        { id: 3, name: 'Mochila escolar', price: 25.00, stock: 3, pathImage: 'https://your-image-link.com/mochila.jpg' },
-        { id: 4, name: 'Cuaderno universitario', price: 4.99, stock: 10, pathImage: 'https://your-image-link.com/cuaderno.jpg' },
-        { id: 5, name: 'Lápices', price: 3.50, stock: 12, pathImage: 'https://your-image-link.com/lapices.jpg' },
+        { id: 1, name: 'Cien años de soledad', price: 15.00, stock: 5, pathImage: { uri: 'https://carlosbattaglini.es/wp-content/uploads/2017/02/librocienan%CC%83osdesoledad.jpg' } },
+        { id: 2, name: 'El Principito', price: 10.50, stock: 8, pathImage: { uri: 'https://cdn.forbes.pe/2023/04/PRINCIPITO.jpg' } },
+        { id: 3, name: 'Mochila escolar', price: 25.00, stock: 3, pathImage: { uri: 'https://comsucre.com.ec/wp-content/uploads/2023/02/PM-UD-3327-5.png' } },
+        { id: 4, name: 'Cuaderno universitario', price: 4.99, stock: 10, pathImage: { uri: 'https://your-image-link.com/cuaderno.jpg' } },
+        { id: 5, name: 'Lápices', price: 3.50, stock: 12, pathImage: { uri: 'https://http2.mlstatic.com/D_NQ_NP_640200-MLU71517988099_092023-O.webp' } },
+        { id: 6, name: 'Agenda', price: 22.00, stock: 5, pathImage: { uri: 'https://dilipa.com.ec/5347-large_default/agenda-ejecutiva-espiral-2025-varios-colores.jpg' } },
+        { id: 7, name: 'Tijeras', price: 4.50, stock: 10, pathImage: { uri: 'https://zarimport.com/wp-content/uploads/2022/06/ZAR15032-247-1.jpg' } },
+        { id: 8, name: 'Corrector líquido', price: 2.75, stock: 15, pathImage: { uri: 'https://i0.wp.com/aguirrepapelerias.com/wp-content/uploads/2021/07/070330506923.png?fit=1200%2C1200&ssl=1' } },
+        { id: 9, name: 'Cartuchera', price: 8.99, stock: 7, pathImage: { uri: 'https://vasari.vteximg.com.br/arquivos/ids/214259-1000-1000/VPT172959-GR.jpg?v=638139069096530000' } },
+        { id: 10, name: 'Marcadores', price: 9.50, stock: 8, pathImage: { uri: 'https://polipapel.vteximg.com.br/arquivos/ids/175019-1000-1000/Y14433.png?v=638209883460000000' } },
+        { id: 11, name: 'Resaltador', price: 6.50, stock: 10, pathImage: { uri: 'https://juanmarcet.com/wp-content/uploads/2020/11/0201129202-03-04-05-06-07-600x600.jpg' } },
+        { id: 12, name: 'Regla 30cm', price: 3.00, stock: 12, pathImage: { uri: 'https://libreriairbe.com/wp-content/uploads/2021/07/Regla-30-cm-Metalica-Metrica-y-Pulgadas-.jpg' } },
+        { id: 13, name: 'Compás', price: 8.00, stock: 6, pathImage: { uri: 'https://www.kores.com/co/wp-content/uploads/sites/23/fly-images/7128/Robot_Single_blue-scaled-700x9999.jpg' } },
+        { id: 14, name: 'Pegamento', price: 2.00, stock: 20, pathImage: { uri: 'https://kywiec.vtexassets.com/arquivos/ids/190262/33125.jpg?v=638416573946970000' } },
     ];
     
     const [productsState, setProductsState] = useState<Product[]>(products);
@@ -78,10 +87,10 @@ export const HomeScreen = () => {
     };
 
     const resetCart = (): void => {
-        setShowModalCar(false); // Cierra el modal primero
+        setShowModalCar(false); 
 
         setTimeout(() => {
-            setCarProducts([]); // Luego vacía el carrito con un pequeño delay
+            setCarProducts([]); 
         }, 200); 
     };
 

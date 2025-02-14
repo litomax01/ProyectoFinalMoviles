@@ -18,10 +18,10 @@ export const ModalCar = ({ isVisible, carProducts, setShowModalCar, resetCart, r
     const { width } = useWindowDimensions();
 
     const handleBuy = () => {
-        setShowModalCar(); // Cierra el modal primero
+        setShowModalCar(); 
 
         setTimeout(() => {
-            resetCart(); // Luego vacía el carrito después de cerrar el modal
+            resetCart(); 
             Alert.alert("¡GRACIAS POR TU COMPRA, VUELVE PRONTO!", "Tu pedido ha sido procesado con éxito.");
         }, 300); 
     };

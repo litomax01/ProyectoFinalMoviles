@@ -52,7 +52,10 @@ export const ModalProduct = ({ product, isVisible, setShowModalProduct, changeSt
                             <Icon name="cancel" size={23} color={PRIMARY_COLOR} onPress={closeModal} />
                         </View>
                     </View>
-                    <Image source={{ uri: product.pathImage }} style={styles.modalImage} />
+
+                    {/* ✅ Aquí está la corrección */}
+                    <Image source={product.pathImage} style={styles.modalImage} />
+
                     <View style={styles.counterContainer}>
                         <TouchableOpacity onPress={handleDecrease} style={styles.counterButton}>
                             <Text style={styles.counterText}>-</Text>
