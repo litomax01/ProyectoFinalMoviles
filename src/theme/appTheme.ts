@@ -81,7 +81,7 @@ export const styles = StyleSheet.create({
         shadowOpacity: 0.2,
         shadowRadius: 3,
         elevation: 3,
-        marginBottom: 15
+        marginBottom: 15,
     },
     imageCard: {
         height: 80,
@@ -194,11 +194,10 @@ export const styles = StyleSheet.create({
         textAlign: 'center',
         marginBottom: 20,
     },
-    
     welcomeText: {
         fontSize: 26,
         fontWeight: 'bold',
-        color: '#FFA500',  // Color más visible
+        color: '#FFA500', 
         textAlign: 'center',
         marginBottom: 10,
     },
@@ -220,20 +219,17 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         marginVertical: 10,
     },
-    
     counterButton: {
         backgroundColor: PRIMARY_COLOR,
         padding: 10,
         borderRadius: 5,
         marginHorizontal: 10,
     },
-    
     counterText: {
         fontSize: 20,
         fontWeight: 'bold',
         color: 'white',
     },
-    
     counterNumber: {
         fontSize: 18,
         fontWeight: 'bold',
@@ -250,9 +246,86 @@ export const styles = StyleSheet.create({
         backgroundColor: '#B0B0B0', 
         opacity: 0.6,
     },
+    cartItemActions: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        paddingHorizontal: 10,
+        marginTop: 10,
+    },
+    decreaseButton: {
+        backgroundColor: '#FFA500',
+        padding: 8,
+        borderRadius: 5,
+        alignItems: 'center',
+    },
+    decreaseText: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: 'white',
+    },
+    deleteButton: {
+        backgroundColor: 'red',
+        padding: 8,
+        borderRadius: 5,
+        alignItems: 'center',
+    },
+    quantityText: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: TEXT_COLOR,
+        marginHorizontal: 10,
+    },
+    buttonBuy: {
+        backgroundColor: BUTTON_COLOR,
+        paddingVertical: 14,
+        borderRadius: 10,
+        alignItems: 'center',
+        marginTop: 15,
+    },
+    buttonBuyText: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: 'white',
+    },
     buttonAddCartText: {
         color: 'white',
         fontWeight: 'bold',
-        fontSize: 16
+        fontSize: 16,
+    },
+    emptyCartMessage: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: '#999',
+        textAlign: 'center',
+        marginTop: 20,
+    },
+    cartItemContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingVertical: 10,
+        borderBottomWidth: 1,
+        borderBottomColor: '#ddd',
+    },
+    cartItemInfo: {
+        flexDirection: 'column',
+        flex: 1,
+        marginLeft: 10,
+    },
+    productName: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: TEXT_COLOR,
+    },
+    productPrice: {
+        fontSize: 14,
+        color: '#777',
+    },
+    productTotal: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: BUTTON_COLOR,
     },
 });
+
