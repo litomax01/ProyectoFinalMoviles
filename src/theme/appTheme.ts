@@ -6,6 +6,32 @@ export const styles = StyleSheet.create({
         color: '#333',
         marginBottom: 5,
     },
+    loginImage: {
+        width: '100%',
+        height: 200,
+        resizeMode: 'contain',
+        marginBottom: 20,
+    },
+    
+    loginSubtitle: {
+        fontSize: 16,
+        color: 'white',
+        textAlign: 'center',
+        marginBottom: 10,
+    },
+    forgotPassword: {
+        marginTop: 10,
+        alignSelf: 'flex-end',
+    },
+    
+    registerContainer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 20,
+    },
+    
+    
     cardContainer: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -20,6 +46,7 @@ export const styles = StyleSheet.create({
         elevation: 2,
         marginBottom: 15
     },
+    
     imageCard: {
         height: 70,
         width: 70,
@@ -61,7 +88,7 @@ export const styles = StyleSheet.create({
         alignSelf: 'center',
         marginVertical: 10
     },
-    textQuantity: {  // ❗ Agregado para evitar el error en ModalProduct.tsx
+    textQuantity: {  
         fontSize: 16,
         fontWeight: 'bold',
         color: '#333',
@@ -87,7 +114,7 @@ export const styles = StyleSheet.create({
         marginVertical: 15,
         paddingHorizontal: 20,
     },
-    headerContainer: {  // ❗ Agregado para evitar el error en HomeScreen.tsx
+    headerContainer: {  
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -95,7 +122,7 @@ export const styles = StyleSheet.create({
         paddingVertical: 10,
         backgroundColor: '#FFC107',
     },
-    textRedirect: {  // ❗ Agregado para evitar el error en LoginScreen.tsx
+    textRedirect: {  
         color: '#FFC107',
         fontSize: 15,
         fontWeight: 'bold',
