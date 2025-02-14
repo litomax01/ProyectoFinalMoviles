@@ -18,11 +18,17 @@ export const ModalCar = ({ isVisible, carProducts, setShowModalCar, resetCart, r
     const { width } = useWindowDimensions();
 
     const handleBuy = () => {
-        Alert.alert("¡Gracias por tu compra!", "Tu pedido ha sido procesado con éxito.", [
-            { text: "OK", onPress: () => resetCart() },
+        Alert.alert("¡GRACIAS POR TU COMPRA, VUELVE PRONTO!", "Tu pedido ha sido procesado con éxito.", [
+            { 
+                text: "OK", 
+                onPress: () => {
+                    resetCart(); 
+                    setShowModalCar(); 
+                }
+            }
         ]);
     };
-
+    
     return (
         <Modal visible={isVisible} animationType='fade' transparent={true}>
             <View style={styles.modalContainer}>

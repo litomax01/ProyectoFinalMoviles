@@ -83,10 +83,19 @@ export const HomeScreen = () => {
     };
 
     const resetCart = (): void => {
-        Alert.alert("¡Gracias por tu compra!", "Tu pedido ha sido procesado con éxito.", [
-            { text: "OK", onPress: () => setCarProducts([]) },
-        ]);
-        setShowModalCar(false);
+        Alert.alert(
+            "¡GRACIAS POR TU COMPRA, VUELVE PRONTO!",
+            "Tu pedido ha sido procesado con éxito.",
+            [
+                { 
+                    text: "OK", 
+                    onPress: () => {
+                        setCarProducts([]);
+                        setShowModalCar(false); 
+                    }
+                }
+            ]
+        );
     };
 
     return (
