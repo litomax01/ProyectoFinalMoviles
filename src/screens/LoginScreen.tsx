@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Alert, StatusBar, Text, TouchableOpacity, View, Image, ScrollView } from 'react-native';
+import { StatusBar, Text, TouchableOpacity, View, Image, ScrollView, Modal } from 'react-native';
 import { TitleComponent } from '../components/TitleComponent';
 import { BodyComponent } from '../components/BodyComponent';
 import { styles } from '../theme/appTheme';
@@ -20,6 +20,8 @@ type NavigationProp = StackNavigationProp<RootStackParamList, 'Login'>;
 export const LoginScreen = ({ users }: Props) => {
     const navigation = useNavigation<NavigationProp>();
     const [loginForm, setLoginForm] = useState({ email: '', password: '' });
+    const [modalVisible, setModalVisible] = useState(false);
+    const [modalMessage, setModalMessage] = useState('');
 
     const handleChange = (name: string, value: string): void => {
         setLoginForm({ ...loginForm, [name]: value });
@@ -31,11 +33,13 @@ export const LoginScreen = ({ users }: Props) => {
 
     const handleLogin = (): void => {
         if (!loginForm.email || !loginForm.password) {
-            Alert.alert('Error', 'Todos los campos son obligatorios');
+            setModalMessage('Todos los campos son obligatorios');
+            setModalVisible(true);
             return;
         }
         if (!verifyUser()) {
-            Alert.alert('Error', 'Usuario y/o contraseña incorrecta');
+            setModalMessage('Usuario y/o contraseña incorrecta');
+            setModalVisible(true);
             return;
         }
         navigation.navigate('Home');
@@ -45,11 +49,15 @@ export const LoginScreen = ({ users }: Props) => {
         <ScrollView contentContainerStyle={{ flexGrow: 1, backgroundColor: PRIMARY_COLOR, alignItems: 'center', justifyContent: 'center', paddingVertical: 40 }}>
             <StatusBar backgroundColor={PRIMARY_COLOR} />
             
-            {/* Imagen decorativa */}
+            {/* Título Principal */}
+            <Text style={styles.mainTitle}>LIBRERÍA Y PAPELERÍA EL REGALOTE</Text>
+
+            {/* Imagen de Login */}
             <Image source={require('../../assets/login-banner.png')} style={styles.loginImage} />
             
-            <TitleComponent title='Bienvenido de vuelta' />
-            <Text style={styles.loginSubtitle}>Accede con tu cuenta para continuar</Text>
+            {/* Subtítulo de Bienvenida Mejorado */}
+            <Text style={styles.welcomeText}>¡Hola de nuevo!</Text>
+            <Text style={styles.loginSubtitle}>Ingresa tus credenciales para continuar</Text>
             
             <BodyComponent>
                 <View style={styles.formContainer}>
@@ -58,18 +66,30 @@ export const LoginScreen = ({ users }: Props) => {
                 </View>
                 
                 <TouchableOpacity style={styles.forgotPassword}>
-                    <Text style={{ color: SECONDARY_COLOR, textAlign: 'right', fontSize: 14 }}>¿Olvidaste tu contraseña?</Text>
+                    <Text style={{ color: SECONDARY_COLOR, textAlign: 'right' }}>¿Olvidaste tu contraseña?</Text>
                 </TouchableOpacity>
                 
-                <ButtonComponent title='Iniciar Sesión' handleSendInfo={handleLogin} />
+                <ButtonComponent title='Acceder' handleSendInfo={handleLogin} />
                 
                 <View style={styles.registerContainer}>
-                    <Text style={{ color: SECONDARY_COLOR, fontSize: 14 }}>¿No tienes cuenta? </Text>
+                    <Text style={{ color: SECONDARY_COLOR }}>¿No tienes cuenta? </Text>
                     <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-                        <Text style={{ color: '#5aabdd', fontWeight: 'bold', fontSize: 14 }}>Regístrate aquí</Text>
+                        <Text style={{ color: '#5aabdd', fontWeight: 'bold' }}>Regístrate aquí</Text>
                     </TouchableOpacity>
                 </View>
             </BodyComponent>
+
+            {/* Modal de Errores */}
+            <Modal visible={modalVisible} animationType='slide' transparent={true}>
+                <View style={styles.modalContainer}>
+                    <View style={styles.modalContent}>
+                        <Text style={styles.modalText}>{modalMessage}</Text>
+                        <TouchableOpacity style={styles.modalButton} onPress={() => setModalVisible(false)}>
+                            <Text style={styles.modalButtonText}>Aceptar</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </Modal>
         </ScrollView>
     );
 }

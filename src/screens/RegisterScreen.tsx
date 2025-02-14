@@ -9,7 +9,6 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../navigator/StackNavigator';
 import { useNavigation } from '@react-navigation/native';
 
-// Definir la navegación correctamente
 type NavigationProp = StackNavigationProp<RootStackParamList, 'Register'>;
 
 interface Props {
@@ -17,7 +16,6 @@ interface Props {
     addUser: (user: User) => void;
 }
 
-// Definir la estructura del usuario
 export interface User {
     id: number;
     name: string;
@@ -38,38 +36,39 @@ export const RegisterScreen = ({ users, addUser }: Props) => {
 
     const navigation = useNavigation<NavigationProp>();
 
-    // Manejar cambios en los inputs
+    
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+   
     const handleChange = (name: string, value: string): void => {
         setRegisterForm({ ...registerForm, [name]: value });
     };
 
-    // Función para registrar al usuario
     const handleRegister = () => {
-        // Validación: No permitir campos vacíos
         if (Object.values(registerForm).some(value => value.trim() === '')) {
             Alert.alert('Error', 'Todos los campos son obligatorios');
             return;
         }
 
-        // Validar que el correo no esté en uso
+        if (!emailRegex.test(registerForm.email)) {
+            Alert.alert('Error', 'Por favor, ingrese un correo electrónico válido');
+            return;
+        }
+
         if (users.some(user => user.email === registerForm.email)) {
             Alert.alert('Error', 'El correo ya está registrado');
             return;
         }
 
-        // Crear nuevo usuario
         const newUser: User = {
-            id: users.length + 1, // Asigna un nuevo ID basado en la cantidad de usuarios
+            id: users.length + 1,
             ...registerForm
         };
 
-        // Agregar usuario
         addUser(newUser);
 
-        // Confirmar registro exitoso
         Alert.alert('Registro exitoso', 'Tu cuenta ha sido creada');
 
-        // Navegar al login
         navigation.navigate('Login');
     };
 
